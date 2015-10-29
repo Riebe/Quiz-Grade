@@ -1,0 +1,77 @@
+import java.util.*;
+public class Student 
+{
+	private String name;
+	private String grade;
+	private int totalScore;
+	private int scoreCount;
+	private double averageScore;
+	
+	public void addQuizScore(int score)
+	{
+		totalScore += score;
+		scoreCount++;
+	}
+	public String getName()
+	{
+		return name;
+	}
+	public int getTotalScore()
+	{
+		return totalScore;
+	}
+	public double getAverageScore()
+	{
+		averageScore = totalScore/scoreCount;
+		return averageScore;
+	}
+	public Student(String firstName, String lastName)
+	{
+		name = firstName + lastName;
+		totalScore = 0;
+		scoreCount = 0;
+	}
+	public String getQuizGrade()
+	{
+		if (averageScore >= 40 && averageScore <= 49){grade = "P";}
+		else if (averageScore >= 50 && averageScore <= 69){grade = "M";}
+		else if (averageScore >= 70){grade = "D";}
+		else {grade = "F";}
+		return grade;
+	}
+	
+	public static void main(String[] args) 
+	{
+		 Student student1 = new Student("Sam", " Wise");
+		 Student student2 = new Student("Frodo", " Baggins");
+		 System.out.println("Student1 name is " + student1.getName());
+		 System.out.println("Student2 name is " + student2.getName());
+		 Scanner input = new Scanner(System.in);
+		 int score = 0;
+		 System.out.print("Enter the number of quiz scores:  ");
+		 int noOfScores = input.nextInt();
+		 for (int i = 1;  i  <=  noOfScores;  i++)
+		 {
+		     System.out.print("Enter a score for "  +student1.getName() + ":");
+		     score = input.nextInt();
+		     student1.addQuizScore(score);
+		     System.out.print("Enter a score for " + student2.getName() + ":");
+		     score = input.nextInt();
+		     student2.addQuizScore(score);
+		 }
+
+		 System.out.println("Total quiz scores:  " + student1.getTotalScore());
+		 System.out.println();
+		 System.out.printf("Average score is %6.2f", student1.getAverageScore());
+		 System.out.println();
+		 System.out.println(student1.getName() + " quiz grading is: " + student1.getQuizGrade());
+		 System.out.println();
+		 System.out.println("Total quiz scores:  " + student2.getTotalScore());
+		 System.out.println();
+		 System.out.printf("Average score is %6.2f", student2.getAverageScore());
+		 System.out.println();
+		 System.out.println(student2.getName() + " quiz grading is: " + student2.getQuizGrade());
+		 
+		 
+	}
+}
